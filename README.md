@@ -13,16 +13,17 @@ Multi Customer Pos Syetem built on ReactNative.
 
 ## Stacks
 
-* [x] [React](https://github.com/reactjs/reactjs.org) `React` Lib.
+* [x] [ReactNative](https://github.com/facebook/react-native) `ReactNative` Lib.
 * [x] [realm-js](https://github.com/realm/realm-js) for `IOS Android` client.
 * [x] [nativebase](https://nativebase.io/) for UI Design.
 * [x] [storybook](https://github.com/storybooks/storybook) for UI Test.
 * [x] [jwt](https://jwt.io/) for authentication.
-* [x] [express](https://jwt.io/) for authentication.
+* [x] [express](http://expressjs.com/) for api server.
 * [x] [mongodb](https://www.mongodb.com/) for database.
 * [x] [docker](https://www.docker.com/) for containerization.
 * [x] [pm2](http://pm2.keymetrics.io/) fro clustering.
 * [x] [jest](https://facebook.github.io/jest/) for testing.
+* [x] [Typescirpt](https://www.typescriptlang.org/) for Type superset of javascript .
 
 ## Getting Started
 
