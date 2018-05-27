@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import Login from './screens/Login'
-import { StackNavigator } from 'react-navigation'
-
+import { StackNavigator, TabNavigator } from 'react-navigation'
+import {Button} from 'native-base'
+import Home from './screens/Home'
 export interface Props { }
-export interface State { }
+export interface State {
+  LoginIn: Boolean,
+  changeLoginStatus: Function
+}
 
 const styles: any = StyleSheet.create({
   container: {
@@ -25,15 +29,40 @@ const styles: any = StyleSheet.create({
   }
 })
 
-export const RootStack : any = StackNavigator({
-  Home: {
+export const LoginStack : any = StackNavigator({
+  Login: {
     screen: Login
   }
 })
+export const TabBarStack : any = TabNavigator({
+  HomePage: {
+    screen: Home
+  }
+})
 export default class App extends React.Component<Props, State> {
+  changeLoginStatus: () => void
+  constructor(props: any) {
+    super(props)
+    this.changeLoginStatus = () => {
+      this.setState(state => {
+        const newLogin = !state.LoginIn
+        return {
+          LoginIn: newLogin
+        }
+      })
+    }
+    this.state = {
+      LoginIn: false,
+      changeLoginStatus: this.changeLoginStatus
+    }
+  }
   render() {
-    return (
-      <RootStack></RootStack>
-    )
+    if (this.state.LoginIn) {
+      return <TabBarStack></TabBarStack>
+
+    } else {
+      return <LoginStack screenProps={this.state}></LoginStack>
+    }
+
   }
 }

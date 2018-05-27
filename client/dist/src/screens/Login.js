@@ -12,6 +12,9 @@ export default class Login extends React.Component {
             accountText: ''
         };
     }
+    componentDidMount() {
+        console.log(this.props.screenProps);
+    }
     renderStatus(status) {
         switch (status) {
             case 'success': {
@@ -52,7 +55,7 @@ export default class Login extends React.Component {
         <View style={{ marginTop: 20 }}>
           <Item error={this.renderStatus('error')} success={this.renderStatus('success')} style={{ marginLeft: 20, marginRight: 20 }}>
               <Input placeholder='請輸入您的帳號' value={this.state.accountText} onChangeText={this.accountChangeText}/>
-              <Icon onPress={this.accounClean} name='close-circle'/>
+              <Icon onPress={() => { this.props.screenProps.changeLoginStatus(); }} name='close-circle'/>
           </Item>
         </View>
       </SafeAreaView>);
