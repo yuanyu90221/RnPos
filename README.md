@@ -1,4 +1,4 @@
-# Next with AntDesign ([Live Version](https://next-ant.herokuapp.com/))
+# ReactNative Pos System (suppor Ble Print )
 
 [![Build Status](https://travis-ci.org/polo13999/nextAnt.svg?branch=master)](https://travis-ci.org/polo13999/nextAnt)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
@@ -9,7 +9,7 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/polo13999/nextAnt?branch=master)](https://bettercodehub.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AntDesign CRUD implementation built on Next.
+Multi Customer Pos Syetem built on ReactNative.
 
 ## Stacks
 
@@ -30,7 +30,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project runs on [Node.js](https://nodejs.org/en/)
+This project runs on [Node.js](https://nodejs.org/en/) and [reactNatvie](https://facebook.github.io/react-native/)
 
 After installation, run `node -v` to make sure node installed correctly. Example
 
@@ -51,7 +51,7 @@ Run the next with the following command:
 npm run dev
 ```
 
-Once its running, head over to your browser to [see Project](http://localhost:3000/).
+Once its running, head over to your browser to develop mode cmd + D [see Project](http://localhost:/).
 
 ### Running Tests
 
@@ -61,8 +61,6 @@ To run the project tests, run the following command:
 npm run test
 ```
 
-### Deploy dockerized apps on Heroku
-
 ## Roadmap
 
 [Roadmap](./Learn.md)
@@ -70,10 +68,10 @@ npm run test
 ## Authors
 
 * Polo Chi - [polo13999](https://github.com/polo13999)
-* Max Li - [LIYINGZHEN](https://github.com/LIYINGZHEN)
+* Navy - [navy774989](https://github.com/navy774989)
 
 ## License
 
-Licensed under the MIT License, Copyright © 2018-present Polo Chi and Max Li.
+Licensed under the MIT License, Copyright © 2018-present Polo Chi and Navy.
 
 See [LICENSE](LICENSE.md) for more information.
