@@ -1,0 +1,33 @@
+{
+  "name": "rnpos",
+  "version": "1.0.0",
+  "description": "react native pos system ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polo13999/RnPos.git"
+  },
+  "keywords": [
+    "reactnative",
+    "storybook",
+    "ble",
+    "jest",
+    "typescript",
+    "ci/cd",
+    "realm",
+    "apollographql",
+    "mongodb"
+  ],
+  "author": "polo <polo13999@gmai.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polo13999/RnPos/issues"
+  },
+  "homepage": "https://github.com/polo13999/RnPos#readme",
+  "dependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  }
+}
