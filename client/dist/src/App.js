@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as React from 'react';
+import Login from './screens/Login';
+import { StackNavigator } from 'react-navigation';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -18,20 +20,14 @@ const styles = StyleSheet.create({
         marginBottom: 5
     }
 });
+export const RootStack = StackNavigator({
+    Home: {
+        screen: Login
+    }
+});
 export default class App extends React.Component {
     render() {
-        return (<View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native! (in TypeScript)
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>);
+        return (<RootStack></RootStack>);
     }
 }
 //# sourceMappingURL=App.js.map

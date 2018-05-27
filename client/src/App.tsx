@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
-import * as React from 'react';
+import * as React from 'react'
+import Login from './screens/Login'
+import { StackNavigator } from 'react-navigation'
+
 export interface Props { }
 export interface State { }
 
@@ -22,21 +25,15 @@ const styles: any = StyleSheet.create({
   }
 })
 
+export const RootStack : any = StackNavigator({
+  Home: {
+    screen: Login
+  }
+})
 export default class App extends React.Component<Props, State> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native! (in TypeScript)
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <RootStack></RootStack>
     )
   }
 }
