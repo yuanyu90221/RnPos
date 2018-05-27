@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import * as React from 'react';
 import Login from './screens/Login';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import Home from './screens/Home';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -20,14 +21,39 @@ const styles = StyleSheet.create({
         marginBottom: 5
     }
 });
-export const RootStack = StackNavigator({
-    Home: {
+export const LoginStack = StackNavigator({
+    Login: {
         screen: Login
     }
 });
+export const TabBarStack = TabNavigator({
+    HomePage: {
+        screen: Home
+    }
+});
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.changeLoginStatus = () => {
+            this.setState(state => {
+                const newLogin = !state.LoginIn;
+                return {
+                    LoginIn: newLogin
+                };
+            });
+        };
+        this.state = {
+            LoginIn: false,
+            changeLoginStatus: this.changeLoginStatus
+        };
+    }
     render() {
-        return (<RootStack></RootStack>);
+        if (this.state.LoginIn) {
+            return <TabBarStack></TabBarStack>;
+        }
+        else {
+            return <LoginStack screenProps={this.state}></LoginStack>;
+        }
     }
 }
 //# sourceMappingURL=App.js.map
