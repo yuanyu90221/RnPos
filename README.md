@@ -3,10 +3,12 @@
 [![Build Status](https://travis-ci.org/polo13999/nextAnt.svg?branch=master)](https://travis-ci.org/polo13999/nextAnt)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/nextAnt.svg)](http://isitmaintained.com/project/polo13999/nextAnt "Percentage of issues still open")
-[![CodeFactor](https://www.codefactor.io/repository/github/polo13999/nextant/badge)](https://www.codefactor.io/repository/github/polo13999/nextant)
-[![Known Vulnerabilities](https://snyk.io/test/github/polo13999/nextAnt/badge.svg)](https://snyk.io/test/github/polo13999/nextAnt)
-[![BCH compliance](https://bettercodehub.com/edge/badge/polo13999/nextAnt?branch=master)](https://bettercodehub.com/)
+
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/RnPos.svg)](http://isitmaintained.com/project/polo13999/RnPos 'Percentage of issues still open')
+
+[![CodeFactor](https://www.codefactor.io/repository/github/polo13999/rnpos/badge)](https://www.codefactor.io/repository/github/polo13999/rnpos)
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/polo13999/RnPos?branch=master)](https://bettercodehub.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Multi Customer Pos Syetem built on ReactNative.
