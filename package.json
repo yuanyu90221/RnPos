@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "precommit": "npm run pretty-quick ",
-    "pretty-quick": "pretty-quick --staged"
+    "pretty-quick": "pretty-quick --staged",
+    "server": "cd server && npm i && nodemon index.js --ignore tests"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   "dependencies": {
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^0.14.3",
+    "nodemon": "^1.17.5",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.6.0"
   }
