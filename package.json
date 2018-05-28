@@ -4,6 +4,10 @@
   "description": "react native pos system ",
   "main": "index.js",
   "scripts": {
+    "start:ios":
+      "cd client && npm i &&  npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
+    "start:android":
+      "cd client &&  npm i &&  npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
     "precommit": "npm run pretty-quick ",
     "pretty-quick": "pretty-quick --staged",
     "server": "cd server && npm i && nodemon index.js --ignore tests"
@@ -35,5 +39,8 @@
     "nodemon": "^1.17.5",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
   }
 }

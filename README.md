@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/polo13999/nextAnt.svg?branch=master)](https://travis-ci.org/polo13999/nextAnt)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/nextAnt.svg)](http://isitmaintained.com/project/polo13999/nextAnt "Percentage of issues still open")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/polo13999/nextAnt.svg)](http://isitmaintained.com/project/polo13999/nextAnt 'Percentage of issues still open')
 [![CodeFactor](https://www.codefactor.io/repository/github/polo13999/nextant/badge)](https://www.codefactor.io/repository/github/polo13999/nextant)
 [![Known Vulnerabilities](https://snyk.io/test/github/polo13999/nextAnt/badge.svg)](https://snyk.io/test/github/polo13999/nextAnt)
 [![BCH compliance](https://bettercodehub.com/edge/badge/polo13999/nextAnt?branch=master)](https://bettercodehub.com/)
@@ -70,9 +70,11 @@ npm run test
 
 * Polo Chi - [polo13999](https://github.com/polo13999)
 * Navy - [navy774989](https://github.com/navy774989)
+* Max Li - [LIYINGZHEN](https://github.com/LIYINGZHEN)
+* MichaelChen - [helloworldsmart](https://github.com/helloworldsmart)
 
 ## License
 
-Licensed under the MIT License, Copyright © 2018-present Polo Chi and Navy.
+Licensed under the MIT License, Copyright © 2018-present Polo Chi ,Max Li,MichaelChen and Navy .
 
 See [LICENSE](LICENSE.md) for more information.
