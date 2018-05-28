@@ -1,11 +1,5 @@
-
 import * as React from 'react'
-import {
-  View,
-  SafeAreaView,
-  ImageBackground,
-  Dimensions
-}from 'react-native'
+import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import { Query } from 'react-apollo'
@@ -25,12 +19,12 @@ export interface LoginProps {
 }
 export interface LoginState {
   accountStatus: Boolean
-  accountText: String,
+  accountText: String
   // tslint:disable-next-line:no-null-keyword
-  passwordStatus: Boolean,
+  passwordStatus: Boolean
   passwordText: String
 }
- class Login extends React.Component<LoginProps, any> {
+class Login extends React.Component<LoginProps, any> {
   static navigationOptions = {
     title: 'Home',
     // tslint:disable-next-line:no-null-keyword
@@ -55,7 +49,7 @@ export interface LoginState {
   componentDidMount() {
     console.log(this.props)
   }
-  renderPasswordStatus( status: String) {
+  renderPasswordStatus(status: String) {
     switch (status) {
       case 'success': {
         return this.state.passwordStatus === true
@@ -64,14 +58,14 @@ export interface LoginState {
         return this.state.passwordStatus === false
       }
       default:
-      return undefined
+        return undefined
     }
   }
   passwordChangeText(text: String) {
-    this.setState({passwordText: text})
+    this.setState({ passwordText: text })
     this.passwordDetect(text)
   }
-  passwordDetect(text: String ) {
+  passwordDetect(text: String) {
     console.log(text.length)
     if (text.length > 0) {
       this.setState({
@@ -89,18 +83,18 @@ export interface LoginState {
       accountText: ''
     })
   }
-  getDimensions (frame: String): number {
+  getDimensions(frame: String): number {
     switch (frame) {
-      case  'width':
+      case 'width':
         return Dimensions.get('window').width
-      case 'height' :
+      case 'height':
         return Dimensions.get('window').height
       default:
-      // tslint:disable-next-line:no-null-keyword
-      return 0
+        // tslint:disable-next-line:no-null-keyword
+        return 0
     }
   }
-  renderAccountStatus( status: String) {
+  renderAccountStatus(status: String) {
     switch (status) {
       case 'success': {
         return this.state.accountStatus === true
@@ -109,14 +103,14 @@ export interface LoginState {
         return this.state.accountStatus === false
       }
       default:
-      return undefined
+        return undefined
     }
   }
   accountChangeText(text: String) {
-    this.setState({accountText: text})
+    this.setState({ accountText: text })
     this.accountDetect(text)
   }
-  accountDetect(text: String ) {
+  accountDetect(text: String) {
     console.log(text.length)
     if (text.length > 0) {
       this.setState({
@@ -130,7 +124,7 @@ export interface LoginState {
   }
   SignIn() {
     if (this.state.passwordStatus && this.state.accountStatus) {
-    this.props.screenProps.changeLoginStatus()
+      this.props.screenProps.changeLoginStatus()
     }
   }
   passwordClean() {
@@ -141,43 +135,93 @@ export interface LoginState {
   }
   render() {
     return (
-      <CreateCrud>
-        { result => {
-          return(
-            <SafeAreaView style={{flex: 1}}>
-              <ImageBackground opacity={0.5} source={require('../../../Images/LoginBackground.jpg')} style = {{flex: 1, width: this.getDimensions('width'), height: this.getDimensions('height')}}>
-              <View style={{backgroundColor: 'white', width: this.getDimensions('width'), height: this.getDimensions('height') * 0.5 , opacity: 0.2 }}>
-
-              </View>
-              <View style={{width: this.getDimensions('width'), height: this.getDimensions('height')}}>
-                <View style={{marginTop: 40}}>
-                  <Item error={this.renderAccountStatus('error')} success={this.renderAccountStatus('success')} style={{marginLeft: 20, marginRight: 20}}>
-                    <Input placeholder='USERNAME' value={this.state.accountText} onChangeText={ this.accountChangeText }/>
-                    <Icon style={{color: 'white'}} name='close-circle' onPress={this.accounClean}/>
-                  </Item>
-                  <Item error={this.renderPasswordStatus('error')} success={this.renderPasswordStatus('success')} style={{marginLeft: 20, marginRight: 20}}>
-                    <Input placeholder='PASSWORD' value={this.state.passwordText} onChangeText={ this.passwordChangeText }/>
-                  <Icon style={{color: 'white'}} name='close-circle' onPress={this.passwordClean} />
-                </Item>
-              </View>
-              <Button full  style={{marginTop: 40, backgroundColor: 'brown'}} onPress={this.SignIn}>
-              <Text>Sign In</Text>
-            </Button>
-            <Text style={{textAlign: 'center', marginTop: 20, color: 'white'}}>Don't have an account? Sign Up</Text>
-          </View>
-        </ImageBackground>
-      </SafeAreaView>
-        )
-      }
-      }
-      </CreateCrud>
+      <Query query={userAllQuery}>
+        {result => {
+          console.log(result)
+          return (
+            <SafeAreaView style={{ flex: 1 }}>
+              <ImageBackground
+                opacity={0.5}
+                source={require('../../../Images/LoginBackground.jpg')}
+                style={{
+                  flex: 1,
+                  width: this.getDimensions('width'),
+                  height: this.getDimensions('height')
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    width: this.getDimensions('width'),
+                    height: this.getDimensions('height') * 0.5,
+                    opacity: 0.2
+                  }}
+                />
+                <View
+                  style={{
+                    width: this.getDimensions('width'),
+                    height: this.getDimensions('height')
+                  }}
+                >
+                  <View style={{ marginTop: 40 }}>
+                    <Item
+                      error={this.renderAccountStatus('error')}
+                      success={this.renderAccountStatus('success')}
+                      style={{ marginLeft: 20, marginRight: 20 }}
+                    >
+                      <Input
+                        placeholder="USERNAME"
+                        value={this.state.accountText}
+                        onChangeText={this.accountChangeText}
+                      />
+                      <Icon
+                        style={{ color: 'white' }}
+                        name="close-circle"
+                        onPress={this.accounClean}
+                      />
+                    </Item>
+                    <Item
+                      error={this.renderPasswordStatus('error')}
+                      success={this.renderPasswordStatus('success')}
+                      style={{ marginLeft: 20, marginRight: 20 }}
+                    >
+                      <Input
+                        placeholder="PASSWORD"
+                        value={this.state.passwordText}
+                        onChangeText={this.passwordChangeText}
+                      />
+                      <Icon
+                        style={{ color: 'white' }}
+                        name="close-circle"
+                        onPress={this.passwordClean}
+                      />
+                    </Item>
+                  </View>
+                  <Button
+                    full
+                    style={{ marginTop: 40, backgroundColor: 'brown' }}
+                    onPress={this.SignIn}
+                  >
+                    <Text>Sign In</Text>
+                  </Button>
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      marginTop: 20,
+                      color: 'white'
+                    }}
+                  >
+                    Don't have an account? Sign Up
+                  </Text>
+                </View>
+              </ImageBackground>
+            </SafeAreaView>
+          )
+        }}
+      </Query>
     )
   }
 }
 // tslint:disable-next-line:variable-name
-const CreateCrud = () => (
-  <Query query={userAllQuery}>
-  </Query>
-)
 
 export default Login
