@@ -45,7 +45,7 @@ export const TabBarStack: any = TabNavigator({
   }
 })
 export const link = createHttpLink({
-  uri: 'http://localhost:8080/graphiql'
+  uri: 'http://localhost:8080/graphql'
 })
 
 export const client = new ApolloClient({
