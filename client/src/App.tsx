@@ -4,6 +4,11 @@ import Login from './screens/Login'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import {Button} from 'native-base'
 import Home from './screens/Home'
+import { ApolloClient } from 'apollo-client'
+import { createHttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloProvider } from 'react-apollo'
+
 export interface Props { }
 export interface State {
   LoginIn: Boolean,
@@ -29,15 +34,23 @@ const styles: any = StyleSheet.create({
   }
 })
 
-export const LoginStack : any = StackNavigator({
+export const LoginStack: any = StackNavigator({
   Login: {
     screen: Login
   }
 })
-export const TabBarStack : any = TabNavigator({
+export const TabBarStack: any = TabNavigator({
   HomePage: {
     screen: Home
   }
+})
+export const link = createHttpLink({
+  uri: 'http://localhost:8080/graphiql'
+})
+
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link
 })
 export default class App extends React.Component<Props, State> {
   changeLoginStatus: () => void
@@ -58,10 +71,14 @@ export default class App extends React.Component<Props, State> {
   }
   render() {
     if (this.state.LoginIn) {
-      return <TabBarStack></TabBarStack>
+      return (<TabBarStack></TabBarStack>)
 
     } else {
-      return <LoginStack screenProps={this.state}></LoginStack>
+      return (
+        <ApolloProvider client={client}>
+          <LoginStack screenProps={this.state}/>
+        </ApolloProvider>
+        )
     }
 
   }
