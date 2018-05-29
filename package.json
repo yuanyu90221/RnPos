@@ -11,7 +11,8 @@
       "cd client &&  npm i &&  npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
     "precommit": "npm run pretty-quick ",
     "pretty-quick": "pretty-quick --staged",
-    "server": "cd server && npm i && nodemon index.js --ignore tests"
+    "server": "cd server && npm i && nodemon index.js --ignore tests",
+    "client":"cd client && npm run start:ios"
   },
   "repository": {
     "type": "git",
