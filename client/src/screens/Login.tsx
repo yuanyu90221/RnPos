@@ -25,11 +25,6 @@ export interface LoginState {
   passwordText: String
 }
 class Login extends React.Component<LoginProps, any> {
-  static navigationOptions = {
-    title: 'Home',
-    // tslint:disable-next-line:no-null-keyword
-    header: null
-  }
   constructor(props: any) {
     super(props)
     this.SignIn = this.SignIn.bind(this)

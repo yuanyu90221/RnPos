@@ -11,7 +11,8 @@ import { Text, Item, Input, Icon, Container, Header, Content, List, ListItem, Le
 import { StackNavigator } from 'react-navigation'
 import  SendBird from 'sendbird'
 export interface LoginProps {
-  screenProps: any
+  screenProps: any,
+  navigation: any
 }
 const chatArrayTest = [
   {
@@ -33,9 +34,8 @@ const chatArrayTest = [
     lastSeen : '03:25 pm'
   }
 ]
-export default class Login extends React.Component<LoginProps, any> {
+export default class Chat extends React.Component<LoginProps, any> {
   static navigationOptions = {
-    title: 'Home',
     // tslint:disable-next-line:no-null-keyword
     header: null
   }
@@ -70,9 +70,7 @@ export default class Login extends React.Component<LoginProps, any> {
         <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => {
             this.props.navigation.push('ChatRoom')
         }}>
-          <Left>
             <Thumbnail source={{ uri: imageUrl }} />
-          </Left>
           <Body>
             <Text>{name}</Text>
             <Text note>{lastMessage}</Text>

@@ -3,9 +3,17 @@ import {
   View,
   Text
 } from 'react-native'
-import { GiftedChat } from 'react-native-gifted-chat';
-
+import { GiftedChat } from 'react-native-gifted-chat'
+export interface ChatRoomProps {
+  ChatRoomProps: any
+}
 export default class ChatRoom extends React.Component<any, any> {
+  static navigationOptions = {
+    title: 'Home',
+    tabBarVisible: false,
+    // tslint:disable-next-line:no-null-keyword
+    tabBarLabel: null
+  }
   constructor(props: any) {
     super(props)
     this.state = {

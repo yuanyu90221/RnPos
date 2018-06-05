@@ -2,8 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import Login from './screens/Login'
 import * as Stack from 'react-navigation'
-import {Button} from 'native-base'
-import Home from './screens/Home'
+import {Button, Icon} from 'native-base'
+import Chat from './screens/Chat'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -35,15 +35,19 @@ const styles: any = StyleSheet.create({
 })
 
 // tslint:disable-next-line:variable-name
-export const LoginStack: any = Stack.StackNavigator({
+export const LoginStack: any = Stack.createStackNavigator({
   Login: {
-    screen: Login
+    screen: Login,
+    navigationOptions: {
+      // tslint:disable-next-line:no-null-keyword
+      header: null
+    }
   }
 })
 // tslint:disable-next-line:variable-name
-export const HomePageStack: any = Stack.StackNavigator({
-  HomePage: {
-    screen: Home
+export const ChatStack: any = Stack.createStackNavigator({
+  ChatList: {
+    screen: Chat
   },
   ChatRoom: {
     screen: ChatRoom,
@@ -52,9 +56,35 @@ export const HomePageStack: any = Stack.StackNavigator({
     }
   }
 })
+ChatStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+  console.log(navigation)
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+  }
+
+  return {
+    tabBarVisible
+  }
+}
 // tslint:disable-next-line:variable-name
-export const TabBarStack: any = Stack.TabNavigator({
-    Home: HomePageStack
+export const TabBarStack: any = Stack.createTabNavigator({
+    Chat: {
+      screen: ChatStack
+    }
+},  {
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state
+      // You can return any component that you like here! We usually use an
+      // icon component from react-native-vector-icons
+      return <Icon name={'comments'} type={'FontAwesome'}  style={{color: 'navy'}} />
+    }
+  }),
+  tabBarOptions: {
+    activeTintColor: 'navy',
+    inactiveTintColor: 'gray'
+  }
 })
 export const link = createHttpLink({
   uri: 'http://localhost:8080/graphql'
