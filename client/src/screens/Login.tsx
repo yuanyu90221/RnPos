@@ -136,8 +136,8 @@ class Login extends React.Component<LoginProps, any> {
   render() {
     return (
       <Query query={userAllQuery}>
-        {result => {
-          console.log(result)
+        {({loading, data , error}) => {
+          console.log(loading)
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground

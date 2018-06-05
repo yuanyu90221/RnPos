@@ -24,7 +24,9 @@
     "react-adopt": "^0.6.0",
     "react-apollo": "^2.1.4",
     "react-native": "0.55.4",
-    "react-navigation": "^2.0.4"
+    "react-native-gifted-chat": "^0.4.3",
+    "react-navigation": "^2.0.4",
+    "sendbird": "^3.0.63"
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",

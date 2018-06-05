@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import Login from './screens/Login'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import * as Stack from 'react-navigation'
 import {Button} from 'native-base'
 import Home from './screens/Home'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
-
+import ChatRoom from './screens/ChatRoom'
 export interface Props { }
 export interface State {
   LoginIn: Boolean,
@@ -34,15 +34,27 @@ const styles: any = StyleSheet.create({
   }
 })
 
-export const LoginStack: any = StackNavigator({
+// tslint:disable-next-line:variable-name
+export const LoginStack: any = Stack.StackNavigator({
   Login: {
     screen: Login
   }
 })
-export const TabBarStack: any = TabNavigator({
+// tslint:disable-next-line:variable-name
+export const HomePageStack: any = Stack.StackNavigator({
   HomePage: {
     screen: Home
+  },
+  ChatRoom: {
+    screen: ChatRoom,
+    navigationOptions: {
+      tabBarVisible: false
+    }
   }
+})
+// tslint:disable-next-line:variable-name
+export const TabBarStack: any = Stack.TabNavigator({
+    Home: HomePageStack
 })
 export const link = createHttpLink({
   uri: 'http://localhost:8080/graphql'
