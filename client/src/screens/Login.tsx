@@ -25,11 +25,6 @@ export interface LoginState {
   passwordText: String
 }
 class Login extends React.Component<LoginProps, any> {
-  static navigationOptions = {
-    title: 'Home',
-    // tslint:disable-next-line:no-null-keyword
-    header: null
-  }
   constructor(props: any) {
     super(props)
     this.SignIn = this.SignIn.bind(this)
@@ -136,8 +131,8 @@ class Login extends React.Component<LoginProps, any> {
   render() {
     return (
       <Query query={userAllQuery}>
-        {result => {
-          console.log(result)
+        {({loading, data , error}) => {
+          console.log(loading)
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground

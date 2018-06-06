@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import Login from './screens/Login'
-import { StackNavigator, TabNavigator } from 'react-navigation'
-import {Button} from 'native-base'
-import Home from './screens/Home'
+import * as Stack from 'react-navigation'
+import {Button, Icon} from 'native-base'
+import Chat from './screens/Chat'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
-
+import ChatRoom from './screens/ChatRoom'
 export interface Props { }
 export interface State {
   LoginIn: Boolean,
@@ -34,14 +34,56 @@ const styles: any = StyleSheet.create({
   }
 })
 
-export const LoginStack: any = StackNavigator({
+// tslint:disable-next-line:variable-name
+export const LoginStack: any = Stack.createStackNavigator({
   Login: {
-    screen: Login
+    screen: Login,
+    navigationOptions: {
+      // tslint:disable-next-line:no-null-keyword
+      header: null
+    }
   }
 })
-export const TabBarStack: any = TabNavigator({
-  HomePage: {
-    screen: Home
+// tslint:disable-next-line:variable-name
+export const ChatStack: any = Stack.createStackNavigator({
+  ChatList: {
+    screen: Chat
+  },
+  ChatRoom: {
+    screen: ChatRoom,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
+})
+ChatStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+  console.log(navigation)
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+  }
+
+  return {
+    tabBarVisible
+  }
+}
+// tslint:disable-next-line:variable-name
+export const TabBarStack: any = Stack.createTabNavigator({
+    Chat: {
+      screen: ChatStack
+    }
+},  {
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state
+      // You can return any component that you like here! We usually use an
+      // icon component from react-native-vector-icons
+      return <Icon name={'comments'} type={'FontAwesome'}  style={{color: 'navy'}} />
+    }
+  }),
+  tabBarOptions: {
+    activeTintColor: 'navy',
+    inactiveTintColor: 'gray'
   }
 })
 export const link = createHttpLink({
