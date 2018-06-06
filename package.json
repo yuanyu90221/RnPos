@@ -39,6 +39,8 @@
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^0.14.3",
     "nodemon": "^1.17.5",
+    "prettier": "^1.12.1",
+    "concurrently": "^3.5.1"
     "pretty-quick": "^1.6.0",
     "react-native-gifted-chat": "^0.4.3"
   },
