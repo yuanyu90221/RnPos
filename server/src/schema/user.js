@@ -17,7 +17,7 @@ const queries = `
 
 const mutations = `
   signup(email: String!, password: String!): User
-  login(email: String!, password: String!): User
+  login(email: String!, password: String!): String
   logout: AuthPayload
   userDelete(_id:String!): User
 `
