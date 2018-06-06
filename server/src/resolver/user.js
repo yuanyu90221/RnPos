@@ -70,9 +70,9 @@ const Mutation = {
         }
       )
 
-      ctx.req.session.userToken = token
+      //ctx.req.session.userToken = token
 
-      return user
+      return token
     },
 
     logout: async (_, args, ctx) => {

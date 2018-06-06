@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const cookieSession = require('cookie-session')
 
 const config = require('./config')
 
@@ -27,12 +26,12 @@ const server = express()
 server.use(cors({ credentials: true, origin: config.origin }))
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
-server.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [config.cookieKey]
-  })
-)
+// server.use(
+//   cookieSession({
+//     maxAge: 30 * 24 * 60 * 60 * 1000,
+//     keys: [config.cookieKey]
+//   })
+// )
 
 apolloMiddle(server, schema)
 apolloMiddleInterFace(server)
