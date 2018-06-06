@@ -2,16 +2,19 @@ import { StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import Login from './screens/Login'
 import * as Stack from 'react-navigation'
-import {Button, Icon} from 'native-base'
+import { Button, Icon } from 'native-base'
 import Chat from './screens/Chat'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
 import ChatRoom from './screens/ChatRoom'
-export interface Props { }
+
+console.disableYellowBox = true
+
+export interface Props {}
 export interface State {
-  LoginIn: Boolean,
+  LoginIn: Boolean
   changeLoginStatus: Function
 }
 
@@ -68,24 +71,33 @@ ChatStack.navigationOptions = ({ navigation }) => {
   }
 }
 // tslint:disable-next-line:variable-name
-export const TabBarStack: any = Stack.createTabNavigator({
+export const TabBarStack: any = Stack.createTabNavigator(
+  {
     Chat: {
       screen: ChatStack
     }
-},  {
-  navigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, tintColor }) => {
-      const { routeName } = navigation.state
-      // You can return any component that you like here! We usually use an
-      // icon component from react-native-vector-icons
-      return <Icon name={'comments'} type={'FontAwesome'}  style={{color: 'navy'}} />
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return (
+          <Icon
+            name={'comments'}
+            type={'FontAwesome'}
+            style={{ color: 'navy' }}
+          />
+        )
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: 'navy',
+      inactiveTintColor: 'gray'
     }
-  }),
-  tabBarOptions: {
-    activeTintColor: 'navy',
-    inactiveTintColor: 'gray'
   }
-})
+)
 export const link = createHttpLink({
   uri: 'http://localhost:8080/graphql'
 })
@@ -113,15 +125,13 @@ export default class App extends React.Component<Props, State> {
   }
   render() {
     if (this.state.LoginIn) {
-      return (<TabBarStack></TabBarStack>)
-
+      return <TabBarStack />
     } else {
       return (
         <ApolloProvider client={client}>
-          <LoginStack screenProps={this.state}/>
+          <LoginStack screenProps={this.state} />
         </ApolloProvider>
-        )
+      )
     }
-
   }
 }
