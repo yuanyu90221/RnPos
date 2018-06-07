@@ -8,6 +8,10 @@ type User {
 type AuthPayload {
   token: String
 }
+
+type AuthToken {
+  token: String
+}
 `
 
 const queries = `
@@ -17,7 +21,7 @@ const queries = `
 
 const mutations = `
   signup(email: String!, password: String!): User
-  login(email: String!, password: String!): String
+  login(email: String!, password: String!): AuthToken
   logout: AuthPayload
   userDelete(_id:String!): User
 `
