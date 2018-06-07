@@ -44,7 +44,7 @@ const Mutation = {
 
         // ctx.req.session.userToken = token
 
-        return user
+        return token
       }
     },
 
