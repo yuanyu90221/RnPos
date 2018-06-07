@@ -8,7 +8,9 @@ const apolloMiddle = (server, schema) =>
     graphqlExpress(async req => {
       return {
         schema,
-        context: { req }
+        context: { req },
+        tracing: true,
+        cacheControl: true
       }
     })
   )

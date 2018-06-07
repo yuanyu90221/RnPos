@@ -13,11 +13,11 @@ const userAllQuery = gql`
   }
 `
 const loginGql = gql`
-      mutation login($email:String!,$password:String!){
-          login(email:$email,password:$password){
-           token
-          }
-      }
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
 `
 // tslint:disable-next-line:variable-name
 
@@ -125,11 +125,11 @@ class Login extends React.Component<LoginProps, any> {
     }
   }
   SignIn(text) {
-    if ( text != undefined) {
-    if (this.state.passwordStatus && this.state.accountStatus) {
-      this.props.screenProps.changeToken(text)
+    if (text != undefined) {
+      if (this.state.passwordStatus && this.state.accountStatus) {
+        this.props.screenProps.changeToken(text)
+      }
     }
-  }
   }
   passwordClean() {
     this.setState({
@@ -140,8 +140,7 @@ class Login extends React.Component<LoginProps, any> {
   render() {
     return (
       <Mutation mutation={loginGql}>
-        {(login, {data}) => {
-
+        {(login, { data }) => {
           console.log(sent)
           console.log(data)
           return (
@@ -176,13 +175,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='USERNAME'
+                        placeholder="USERNAME"
                         value={this.state.accountText}
                         onChangeText={this.accountChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.accounClean}
                       />
                     </Item>
@@ -192,13 +191,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='PASSWORD'
+                        placeholder="PASSWORD"
                         value={this.state.passwordText}
                         onChangeText={this.passwordChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.passwordClean}
                       />
                     </Item>
@@ -207,7 +206,14 @@ class Login extends React.Component<LoginProps, any> {
                     full
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
                     onPress={() => {
-                      login({variables: {email: this.state.accountText, password: this.state.passwordText}}), this.SignIn(data)}}
+                      login({
+                        variables: {
+                          email: this.state.accountText,
+                          password: this.state.passwordText
+                        }
+                      }),
+                        this.SignIn(data)
+                    }}
                   >
                     <Text>Sign In</Text>
                   </Button>
