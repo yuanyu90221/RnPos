@@ -210,7 +210,7 @@ class Login extends React.Component<LoginProps, any> {
                           password: this.state.passwordText
                         }
                       }),
-                        this.SignIn(data)
+                        this.SignIn(data.login.token)
                     }}
                   >
                     <Text>Sign In</Text>
