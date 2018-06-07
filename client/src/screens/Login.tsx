@@ -2,17 +2,8 @@ import * as React from 'react'
 import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
-// tslint:disable-next-line:variable-name
-const userAllQuery = gql`
-  query userAllQuery {
-    userAllQuery {
-      email
-    }
-  }
-`
-// tslint:disable-next-line:variable-name
+
+import { allGraphql } from '../graphql/login'
 
 export interface LoginProps {
   screenProps: any
@@ -130,8 +121,8 @@ class Login extends React.Component<LoginProps, any> {
   }
   render() {
     return (
-      <Query query={userAllQuery}>
-        {({loading, data , error}) => {
+      <AllGraphql query={userAllQuery}>
+        {({ loading, data, error }) => {
           console.log(loading)
           return (
             <SafeAreaView style={{ flex: 1 }}>
@@ -165,13 +156,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='USERNAME'
+                        placeholder="USERNAME"
                         value={this.state.accountText}
                         onChangeText={this.accountChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.accounClean}
                       />
                     </Item>
@@ -181,13 +172,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='PASSWORD'
+                        placeholder="PASSWORD"
                         value={this.state.passwordText}
                         onChangeText={this.passwordChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.passwordClean}
                       />
                     </Item>
@@ -213,7 +204,7 @@ class Login extends React.Component<LoginProps, any> {
             </SafeAreaView>
           )
         }}
-      </Query>
+      </AllGraphql>
     )
   }
 }

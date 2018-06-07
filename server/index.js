@@ -2,6 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const { ApolloEngine } = require('apollo-engine')
+const engine = new ApolloEngine({
+  apiKey: 'service:polo13999-2343:l-OR09ACy4kourgmLCBC3g',
+  logging: {
+    level: 'DEBUG' // Engine Proxy logging level. DEBUG, INFO (default), WARN or ERROR.
+  }
+})
 
 const config = require('./config')
 
@@ -41,3 +48,7 @@ server.listen(port, err => {
   // eslint-disable-next-line no-console
   console.log(`> ready on http://localhost:${port}`)
 })
+// engine.listen({
+//   port: port,
+//   connectApp: server
+// });
