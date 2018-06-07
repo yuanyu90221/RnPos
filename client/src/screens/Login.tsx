@@ -12,10 +12,12 @@ const userAllQuery = gql`
     }
   }
 `
-const loginQuery = gql`
-mutation login($email : String!, $password: String!){
-  token
-}
+const loginGql = gql`
+      mutation login($email:String!,$password:String!){
+          login(email:$email,password:$password){
+           token
+          }
+      }
 `
 // tslint:disable-next-line:variable-name
 
@@ -137,8 +139,8 @@ class Login extends React.Component<LoginProps, any> {
   }
   render() {
     return (
-      <Mutation mutation={loginQuery}>
-        {(sent, {data}) => {
+      <Mutation mutation={loginGql}>
+        {(login, {data}) => {
 
           console.log(sent)
           console.log(data)
@@ -205,7 +207,7 @@ class Login extends React.Component<LoginProps, any> {
                     full
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
                     onPress={() => {
-                      sent({variables: {email: this.state.accountText, password: this.state.passwordText}}), this.SignIn(data)}}
+                      login({variables: {email: this.state.accountText, password: this.state.passwordText}}), this.SignIn(data)}}
                   >
                     <Text>Sign In</Text>
                   </Button>
