@@ -118,7 +118,7 @@ export default class App extends React.Component<Props, State> {
     }
     this.state = {
       // tslint:disable-next-line:no-null-keyword
-      token: null,
+      token: '',
       changeToken: this.changeToken
     }
   }
