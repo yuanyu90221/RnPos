@@ -140,9 +140,7 @@ class Login extends React.Component<LoginProps, any> {
   render() {
     return (
       <Mutation mutation={loginGql}>
-        {(login, { data }) => {
-          console.log(sent)
-          console.log(data)
+        {(login, {data}) => {
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground
