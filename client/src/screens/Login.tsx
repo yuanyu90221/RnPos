@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
-import { Query } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 // tslint:disable-next-line:variable-name
 const userAllQuery = gql`
@@ -11,6 +11,11 @@ const userAllQuery = gql`
       email
     }
   }
+`
+const loginQuery = gql`
+mutation login($email : String!, $password: String!){
+  token
+}
 `
 // tslint:disable-next-line:variable-name
 
@@ -117,10 +122,12 @@ class Login extends React.Component<LoginProps, any> {
       })
     }
   }
-  SignIn() {
+  SignIn(text) {
+    if ( text != undefined) {
     if (this.state.passwordStatus && this.state.accountStatus) {
-      this.props.screenProps.changeLoginStatus()
+      this.props.screenProps.changeToken(text)
     }
+  }
   }
   passwordClean() {
     this.setState({
@@ -130,9 +137,11 @@ class Login extends React.Component<LoginProps, any> {
   }
   render() {
     return (
-      <Query query={userAllQuery}>
-        {({loading, data , error}) => {
-          console.log(loading)
+      <Mutation mutation={loginQuery}>
+        {(sent, {data}) => {
+
+          console.log(sent)
+          console.log(data)
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground
@@ -195,7 +204,8 @@ class Login extends React.Component<LoginProps, any> {
                   <Button
                     full
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
-                    onPress={this.SignIn}
+                    onPress={() => {
+                      sent({variables: {email: this.state.accountText, password: this.state.passwordText}}), this.SignIn(data)}}
                   >
                     <Text>Sign In</Text>
                   </Button>
@@ -213,7 +223,7 @@ class Login extends React.Component<LoginProps, any> {
             </SafeAreaView>
           )
         }}
-      </Query>
+      </Mutation>
     )
   }
 }
