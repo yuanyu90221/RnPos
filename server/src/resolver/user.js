@@ -19,6 +19,30 @@ const Query = {
 
 const Mutation = {
   Mutation: {
+    login: async (_, args, ctx) => {
+      const user = await User.findOne({ email: args.email })
+
+      if (!user) {
+        throw new Error('No such user found')
+      }
+
+      const valid = await bcrypt.compare(args.password, user.password)
+      if (!valid) {
+        throw new Error('Invalid password')
+      }
+
+      const token = jwt.sign(
+        {
+          userId: user._id
+        },
+        config.secret,
+        {
+          expiresIn: '7d'
+        }
+      )
+
+      return { token }
+    },
     signup: async (_, args, ctx) => {
       let user = new User()
       user.email = args.email
@@ -44,37 +68,9 @@ const Mutation = {
 
         // ctx.req.session.userToken = token
 
-        return token
+        return user
       }
     },
-
-    login: async (_, args, ctx) => {
-      const user = await User.findOne({ email: args.email })
-
-      if (!user) {
-        throw new Error('No such user found')
-      }
-
-      const valid = await bcrypt.compare(args.password, user.password)
-      if (!valid) {
-        throw new Error('Invalid password')
-      }
-
-      const token = jwt.sign(
-        {
-          userId: user._id
-        },
-        config.secret,
-        {
-          expiresIn: '7d'
-        }
-      )
-
-      //ctx.req.session.userToken = token
-
-      return token
-    },
-
     logout: async (_, args, ctx) => {
       const token = ctx.req.session.userToken
       ctx.req.session.userToken = null

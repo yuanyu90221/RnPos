@@ -110,10 +110,10 @@ export default class App extends React.Component<Props, State> {
   changeToken: (token) => void
   constructor(props: any) {
     super(props)
-    this.changeToken = (token) => {
+    this.changeToken = token => {
       const newToken = token
       this.setState({
-        token : newToken
+        token: newToken
       })
     }
     this.state = {
@@ -124,10 +124,11 @@ export default class App extends React.Component<Props, State> {
   }
   render() {
     if (this.state.token.length > 5) {
-      return(
+      return (
         <ApolloProvider client={client}>
           <TabBarStack />
-        </ApolloProvider>)
+        </ApolloProvider>
+      )
     } else {
       return (
         <ApolloProvider client={client}>
