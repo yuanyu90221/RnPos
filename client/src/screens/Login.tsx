@@ -140,7 +140,11 @@ class Login extends React.Component<LoginProps, any> {
   render() {
     return (
       <Mutation mutation={loginGql}>
-        {(login, {data}) => {
+        {(login, { data, loading, error }) => {
+          // if (loading == true) { return <Text>Loading</Text> }
+          if (error != undefined) {
+            return <Text>error</Text>
+          }
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground
@@ -203,14 +207,18 @@ class Login extends React.Component<LoginProps, any> {
                   <Button
                     full
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
-                    onPress={() => {
-                      login({
+                    onPress={async () => {
+                      const {
+                        data: {
+                          login: { token }
+                        }
+                      } = await login({
                         variables: {
                           email: this.state.accountText,
                           password: this.state.passwordText
                         }
-                      }),
-                        this.SignIn(data.login.token)
+                      })
+                      this.SignIn(token)
                     }}
                   >
                     <Text>Sign In</Text>
