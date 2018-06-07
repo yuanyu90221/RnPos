@@ -14,8 +14,8 @@ console.disableYellowBox = true
 
 export interface Props {}
 export interface State {
-  LoginIn: Boolean
-  changeLoginStatus: Function
+  token: String
+  changeToken: Function
 }
 
 const styles: any = StyleSheet.create({
@@ -107,25 +107,27 @@ export const client = new ApolloClient({
   link
 })
 export default class App extends React.Component<Props, State> {
-  changeLoginStatus: () => void
+  changeToken: (token) => void
   constructor(props: any) {
     super(props)
-    this.changeLoginStatus = () => {
-      this.setState(state => {
-        const newLogin = !state.LoginIn
-        return {
-          LoginIn: newLogin
-        }
+    this.changeToken = (token) => {
+      const newToken = token
+      this.setState({
+        token : newToken
       })
     }
     this.state = {
-      LoginIn: false,
-      changeLoginStatus: this.changeLoginStatus
+      // tslint:disable-next-line:no-null-keyword
+      token: null,
+      changeToken: this.changeToken
     }
   }
   render() {
-    if (this.state.LoginIn) {
-      return <TabBarStack />
+    if (this.state.token.length > 5) {
+      return(
+        <ApolloProvider client={client}>
+          <TabBarStack />
+        </ApolloProvider>)
     } else {
       return (
         <ApolloProvider client={client}>
