@@ -212,7 +212,7 @@ class Login extends React.Component<LoginProps, any> {
                         data: {
                           login: { token }
                         }
-                      } = await login({
+                      }: any = await login({
                         variables: {
                           email: this.state.accountText,
                           password: this.state.passwordText
