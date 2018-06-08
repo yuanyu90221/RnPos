@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
+import { View, SafeAreaView, ImageBackground, Dimensions, TouchableOpacity } from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import { Query, Mutation } from 'react-apollo'
@@ -22,7 +22,8 @@ const loginGql = gql`
 // tslint:disable-next-line:variable-name
 
 export interface LoginProps {
-  screenProps: any
+  screenProps: any,
+  navigation: any
 }
 export interface LoginState {
   accountStatus: Boolean
@@ -39,6 +40,7 @@ class Login extends React.Component<LoginProps, any> {
     this.accountChangeText = this.accountChangeText.bind(this)
     this.passwordClean = this.passwordClean.bind(this)
     this.passwordChangeText = this.passwordChangeText.bind(this)
+    this.PushToSignUpPage = this.PushToSignUpPage.bind(this)
     this.state = {
       // tslint:disable-next-line:no-null-keyword
       accountStatus: null,
@@ -137,6 +139,10 @@ class Login extends React.Component<LoginProps, any> {
       passwordText: ''
     })
   }
+  PushToSignUpPage() {
+
+    this.props.navigation.push('SignUp')
+  }
   render() {
     return (
       <Mutation mutation={loginGql}>
@@ -177,13 +183,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder="USERNAME"
+                        placeholder='USERNAME'
                         value={this.state.accountText}
                         onChangeText={this.accountChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name="close-circle"
+                        name='close-circle'
                         onPress={this.accounClean}
                       />
                     </Item>
@@ -193,13 +199,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder="PASSWORD"
+                        placeholder='PASSWORD'
                         value={this.state.passwordText}
                         onChangeText={this.passwordChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name="close-circle"
+                        name='close-circle'
                         onPress={this.passwordClean}
                       />
                     </Item>
@@ -209,10 +215,10 @@ class Login extends React.Component<LoginProps, any> {
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
                     onPress={async () => {
                       const {
-                        data: {
+                        data : {
                           login: { token }
                         }
-                      } = await login({
+                      }: any = await login({
                         variables: {
                           email: this.state.accountText,
                           password: this.state.passwordText
@@ -223,15 +229,17 @@ class Login extends React.Component<LoginProps, any> {
                   >
                     <Text>Sign In</Text>
                   </Button>
-                  <Text
+                  <TouchableOpacity onPress={this.PushToSignUpPage}>
+                    <Text
                     style={{
                       textAlign: 'center',
                       marginTop: 20,
                       color: 'white'
                     }}
-                  >
+                    >
                     Don't have an account? Sign Up
-                  </Text>
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               </ImageBackground>
             </SafeAreaView>

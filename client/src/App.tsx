@@ -9,7 +9,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
 import ChatRoom from './screens/ChatRoom'
-
+import SignUp from './screens/SingUP'
 console.disableYellowBox = true
 
 export interface Props {}
@@ -44,6 +44,13 @@ export const LoginStack: any = Stack.createStackNavigator({
     navigationOptions: {
       // tslint:disable-next-line:no-null-keyword
       header: null
+    }
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      title: 'SignUp'
+      // tslint:disable-next-line:no-null-keyword
     }
   }
 })
