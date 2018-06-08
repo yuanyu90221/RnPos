@@ -9,7 +9,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
 import ChatRoom from './screens/ChatRoom'
-import SignUp from './screens/SingUP'
+import SignUp from './screens/SignUp'
 console.disableYellowBox = true
 
 export interface Props {}
