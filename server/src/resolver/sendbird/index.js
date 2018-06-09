@@ -27,4 +27,4 @@ const addUser = async (nickname, profile_url, user_id) => {
   )
 }
 
-module.exports = addUser
+module.exports = { addUser }
