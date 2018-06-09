@@ -10,15 +10,18 @@ import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import { adopt } from 'react-adopt'
 import { Toggle, Value } from 'react-powerplug'
+import { Query, Mutation } from 'react-apollo'
 
-import { AllGraphql } from '../graphql/login'
+import { queryFn, loginFn } from '../graphql/login'
 
-console.log('AllGraphql', AllGraphql)
+//console.log('AllGraphql', AllGraphql)
 
 const AdoptContainer = adopt({
-  xxx: <Value initial={123} />
+  queryFn,
+  loginFn
 })
 
+//console.log('AdoptContainer', AdoptContainer)
 export interface LoginProps {
   screenProps: any
   navigation: any
@@ -131,6 +134,19 @@ class Login extends React.Component<LoginProps, any> {
       }
     }
   }
+  Login = loginFn => async () => {
+    const {
+      data: {
+        login: { token }
+      }
+    }: any = await loginFn.mutation({
+      variables: {
+        email: this.state.accountText,
+        password: this.state.passwordText
+      }
+    })
+    this.SignIn(token)
+  }
   passwordClean() {
     this.setState({
       passwordStatus: false,
@@ -147,9 +163,92 @@ class Login extends React.Component<LoginProps, any> {
     //   } } }) => {
 
     return (
-      <View>
-        <Text>123</Text>
-      </View>
+      <AdoptContainer>
+        {({ signUpFn, queryFn }) => {
+          //   console.log('result', result)
+          return (
+            <SafeAreaView style={{ flex: 1 }}>
+              <ImageBackground
+                opacity={0.5}
+                source={require('../../../Images/LoginBackground.jpg')}
+                style={{
+                  flex: 1,
+                  width: this.getDimensions('width'),
+                  height: this.getDimensions('height')
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    width: this.getDimensions('width'),
+                    height: this.getDimensions('height') * 0.5,
+                    opacity: 0.2
+                  }}
+                />
+                <View
+                  style={{
+                    width: this.getDimensions('width'),
+                    height: this.getDimensions('height')
+                  }}
+                >
+                  <View style={{ marginTop: 40 }}>
+                    <Item
+                      error={this.renderAccountStatus('error')}
+                      success={this.renderAccountStatus('success')}
+                      style={{ marginLeft: 20, marginRight: 20 }}
+                    >
+                      <Input
+                        placeholder="USERNAME"
+                        value={this.state.accountText}
+                        onChangeText={this.accountChangeText}
+                      />
+                      <Icon
+                        style={{ color: 'white' }}
+                        name="close-circle"
+                        onPress={this.accounClean}
+                      />
+                    </Item>
+                    <Item
+                      error={this.renderPasswordStatus('error')}
+                      success={this.renderPasswordStatus('success')}
+                      style={{ marginLeft: 20, marginRight: 20 }}
+                    >
+                      <Input
+                        placeholder="PASSWORD"
+                        value={this.state.passwordText}
+                        onChangeText={this.passwordChangeText}
+                      />
+                      <Icon
+                        style={{ color: 'white' }}
+                        name="close-circle"
+                        onPress={this.passwordClean}
+                      />
+                    </Item>
+                  </View>
+                  <Button
+                    full
+                    style={{ marginTop: 40, backgroundColor: 'brown' }}
+                    onPress={this.Login(loginFn)}
+                  >
+                    <Text>Sign In</Text>
+                  </Button>
+                  <TouchableOpacity onPress={this.PushToSignUpPage}>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        marginTop: 20,
+                        color: 'white'
+                      }}
+                    >
+                      Don't have an account? Sign Up
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </ImageBackground>
+            </SafeAreaView>
+          )
+        }}
+      </AdoptContainer>
     )
 
     //   }}

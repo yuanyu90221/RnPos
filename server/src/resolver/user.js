@@ -50,7 +50,8 @@ const Mutation = {
       let user = new User()
       user.email = args.email
       user.password = args.password
-      user.picture = user.gravatar()
+      //user.picture = user.gravatar()
+      user.nickname = args.nickname
 
       const existingUser = await User.findOne({ email: args.email })
 
@@ -59,7 +60,7 @@ const Mutation = {
       } else {
         const {
           body: { message, code, error }
-        } = addUser(user.email, user.picture, user.email)
+        } = addUser(user.email, user.nickname, user.email)
         if (error) {
           throw new Error('SendBird Error')
         }

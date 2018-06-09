@@ -10,6 +10,20 @@ import {
   Button,
   Text
 } from 'native-base'
+
+import { Query, Mutation } from 'react-apollo'
+import { adopt } from 'react-adopt'
+import { Toggle, Value } from 'react-powerplug'
+
+import { queryFn, signUpFn } from '../graphql/login'
+
+//console.log('AllGraphql', AllGraphql)
+
+const AdoptContainer = adopt({
+  queryFn,
+  signUpFn
+})
+
 class SignUp extends React.Component {
   state = {
     account: '',
@@ -38,41 +52,61 @@ class SignUp extends React.Component {
     })
   }
 
-  signUp = () => {
-    console.log(this.state.account, this.state.password, this.state.nickname)
+  signUp = signUpFn => async () => {
+    console.log('test')
+    // console.log(this.state.account, this.state.password, this.state.nickname)
+    // await signUpFn.mutation({
+    //   variables: {
+    //     email: this.state.account,
+    //     password: this.state.password,
+    //     nickname: this.state.nickname
+    //   }
+    // })
   }
 
   render() {
     return (
-      <Container>
-        <Content>
-          <Item style={{ marginTop: Dimensions.get('window').height * 0.1 }}>
-            <Input
-              placeholder="email"
-              value={this.state.account}
-              onChange={this.accountInput}
-            />
-          </Item>
-          <Item style={{}}>
-            <Input
-              placeholder="password"
-              secureTextEntry
-              value={this.state.password}
-              onChange={this.passwordInput}
-            />
-          </Item>
-          <Item style={{}}>
-            <Input
-              placeholder="nickname"
-              value={this.state.nickname}
-              onChange={this.nicknameInput}
-            />
-          </Item>
-          <Button onPress={this.signUp} full style={{ marginTop: 40 }}>
-            <Text>SignUp</Text>
-          </Button>
-        </Content>
-      </Container>
+      <AdoptContainer>
+        {({ signUpFn, queryFn }) => {
+          return (
+            <Container>
+              <Content>
+                <Item
+                  style={{ marginTop: Dimensions.get('window').height * 0.1 }}
+                >
+                  <Input
+                    placeholder="email"
+                    value={this.state.account}
+                    onChange={this.accountInput}
+                  />
+                </Item>
+                <Item style={{}}>
+                  <Input
+                    placeholder="password"
+                    secureTextEntry
+                    value={this.state.password}
+                    onChange={this.passwordInput}
+                  />
+                </Item>
+                <Item style={{}}>
+                  <Input
+                    placeholder="nickname"
+                    value={this.state.nickname}
+                    onChange={this.nicknameInput}
+                  />
+                </Item>
+                <Button
+                  onPress={this.signUp(signUpFn)}
+                  full
+                  style={{ marginTop: 40 }}
+                >
+                  <Text>SignUp</Text>
+                </Button>
+              </Content>
+            </Container>
+          )
+        }}
+      </AdoptContainer>
     )
   }
 }
