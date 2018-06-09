@@ -1,15 +1,11 @@
 import React from 'react'
-import {
-  View,
-  Text
-} from 'react-native'
+import { View, Text } from 'react-native'
 import { GiftedChat } from 'react-native-gifted-chat'
 export interface ChatRoomProps {
   ChatRoomProps: any
 }
 export default class ChatRoom extends React.Component<any, any> {
   static navigationOptions = {
-    title: 'Home',
     tabBarVisible: false,
     // tslint:disable-next-line:no-null-keyword
     tabBarLabel: null
@@ -20,7 +16,7 @@ export default class ChatRoom extends React.Component<any, any> {
       messages: []
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       messages: [
         {
@@ -42,14 +38,14 @@ export default class ChatRoom extends React.Component<any, any> {
     }))
   }
   render() {
-    return(
+    return (
       <GiftedChat
-      messages={this.state.messages}
-      onSend={(messages: any) => this.onSend(messages)}
-      user={{
-        _id: 1
-      }}
-    />
+        messages={this.state.messages}
+        onSend={(messages: any) => this.onSend(messages)}
+        user={{
+          _id: 1
+        }}
+      />
     )
   }
 }

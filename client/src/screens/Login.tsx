@@ -1,5 +1,11 @@
-import React from 'react'
-import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
+import * as React from 'react'
+import {
+  View,
+  SafeAreaView,
+  ImageBackground,
+  Dimensions,
+  TouchableOpacity
+} from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import { adopt } from 'react-adopt'
@@ -15,6 +21,7 @@ const AdoptContainer = adopt({
 
 export interface LoginProps {
   screenProps: any
+  navigation: any
 }
 export interface LoginState {
   accountStatus: Boolean
@@ -31,6 +38,7 @@ class Login extends React.Component<LoginProps, any> {
     this.accountChangeText = this.accountChangeText.bind(this)
     this.passwordClean = this.passwordClean.bind(this)
     this.passwordChangeText = this.passwordChangeText.bind(this)
+    this.PushToSignUpPage = this.PushToSignUpPage.bind(this)
     this.state = {
       // tslint:disable-next-line:no-null-keyword
       accountStatus: null,
@@ -128,6 +136,9 @@ class Login extends React.Component<LoginProps, any> {
       passwordStatus: false,
       passwordText: ''
     })
+  }
+  PushToSignUpPage() {
+    this.props.navigation.push('SignUp')
   }
   render() {
     // return <AdoptContainer>
