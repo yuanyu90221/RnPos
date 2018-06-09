@@ -9,7 +9,6 @@ export interface ChatRoomProps {
 }
 export default class ChatRoom extends React.Component<any, any> {
   static navigationOptions = {
-    title: 'Home',
     tabBarVisible: false,
     // tslint:disable-next-line:no-null-keyword
     tabBarLabel: null
