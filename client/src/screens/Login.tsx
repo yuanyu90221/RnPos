@@ -1,25 +1,17 @@
-import * as React from 'react'
+import React from 'react'
 import { View, SafeAreaView, ImageBackground, Dimensions } from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
-import { Query, Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
-// tslint:disable-next-line:variable-name
-const userAllQuery = gql`
-  query userAllQuery {
-    userAllQuery {
-      email
-    }
-  }
-`
-const loginGql = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-    }
-  }
-`
-// tslint:disable-next-line:variable-name
+import { adopt } from 'react-adopt'
+import { Toggle, Value } from 'react-powerplug'
+
+import { AllGraphql } from '../graphql/login'
+
+console.log('AllGraphql', AllGraphql)
+
+const AdoptContainer = adopt({
+  xxx: <Value initial={123} />
+})
 
 export interface LoginProps {
   screenProps: any
@@ -138,107 +130,19 @@ class Login extends React.Component<LoginProps, any> {
     })
   }
   render() {
+    // return <AdoptContainer>
+    //   {({ result: { container: {
+    //     loginFn: { data, loading, error }
+    //   } } }) => {
+
     return (
-      <Mutation mutation={loginGql}>
-        {(login, { data, loading, error }) => {
-          // if (loading == true) { return <Text>Loading</Text> }
-          if (error != undefined) {
-            return <Text>error</Text>
-          }
-          return (
-            <SafeAreaView style={{ flex: 1 }}>
-              <ImageBackground
-                opacity={0.5}
-                source={require('../../../Images/LoginBackground.jpg')}
-                style={{
-                  flex: 1,
-                  width: this.getDimensions('width'),
-                  height: this.getDimensions('height')
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: 'white',
-                    width: this.getDimensions('width'),
-                    height: this.getDimensions('height') * 0.5,
-                    opacity: 0.2
-                  }}
-                />
-                <View
-                  style={{
-                    width: this.getDimensions('width'),
-                    height: this.getDimensions('height')
-                  }}
-                >
-                  <View style={{ marginTop: 40 }}>
-                    <Item
-                      error={this.renderAccountStatus('error')}
-                      success={this.renderAccountStatus('success')}
-                      style={{ marginLeft: 20, marginRight: 20 }}
-                    >
-                      <Input
-                        placeholder="USERNAME"
-                        value={this.state.accountText}
-                        onChangeText={this.accountChangeText}
-                      />
-                      <Icon
-                        style={{ color: 'white' }}
-                        name="close-circle"
-                        onPress={this.accounClean}
-                      />
-                    </Item>
-                    <Item
-                      error={this.renderPasswordStatus('error')}
-                      success={this.renderPasswordStatus('success')}
-                      style={{ marginLeft: 20, marginRight: 20 }}
-                    >
-                      <Input
-                        placeholder="PASSWORD"
-                        value={this.state.passwordText}
-                        onChangeText={this.passwordChangeText}
-                      />
-                      <Icon
-                        style={{ color: 'white' }}
-                        name="close-circle"
-                        onPress={this.passwordClean}
-                      />
-                    </Item>
-                  </View>
-                  <Button
-                    full
-                    style={{ marginTop: 40, backgroundColor: 'brown' }}
-                    onPress={async () => {
-                      const {
-                        data: {
-                          login: { token }
-                        }
-                      }: any = await login({
-                        variables: {
-                          email: this.state.accountText,
-                          password: this.state.passwordText
-                        }
-                      })
-                      this.SignIn(token)
-                    }}
-                  >
-                    <Text>Sign In</Text>
-                  </Button>
-                  <Text
-                    style={{
-                      textAlign: 'center',
-                      marginTop: 20,
-                      color: 'white'
-                    }}
-                  >
-                    Don't have an account? Sign Up
-                  </Text>
-                </View>
-              </ImageBackground>
-            </SafeAreaView>
-          )
-        }}
-      </Mutation>
+      <View>
+        <Text>123</Text>
+      </View>
     )
+
+    //   }}
+    // </AdoptContainer>
   }
 }
 // tslint:disable-next-line:variable-name
