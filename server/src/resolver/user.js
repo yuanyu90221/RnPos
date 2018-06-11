@@ -6,8 +6,6 @@ const User = require('../models/user')
 const config = require('../../config')
 const { addUser } = require('./sendbird/')
 
-// const { getUserId } = require('../utils')
-
 const Query = {
   Query: {
     profile: async (parent, args, ctx) => {
@@ -58,12 +56,11 @@ const Mutation = {
       if (existingUser) {
         throw new Error('Account with that email is already exist')
       } else {
-        const {
-          body: { message, code, error }
-        } = addUser(user.email, user.nickname, user.email)
-        if (error) {
-          throw new Error('SendBird Error')
-        }
+        const result = addUser(user.email, user.nickname, user.email)
+        // if (error) {
+        //   throw new Error('SendBird Error')
+        // }
+        console.log('result', result)
         user.save()
 
         const token = jwt.sign(

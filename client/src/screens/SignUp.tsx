@@ -24,7 +24,7 @@ const AdoptContainer = adopt({
   signUpFn
 })
 
-class SignUp extends React.Component {
+class SignUp extends React.PureComponent {
   state = {
     account: '',
     password: '',
@@ -54,20 +54,36 @@ class SignUp extends React.Component {
 
   signUp = signUpFn => async () => {
     console.log('test')
+    console.log('signUpFn', signUpFn)
     // console.log(this.state.account, this.state.password, this.state.nickname)
-    // await signUpFn.mutation({
-    //   variables: {
-    //     email: this.state.account,
-    //     password: this.state.password,
-    //     nickname: this.state.nickname
-    //   }
-    // })
+    // await
+    signUpFn.mutation({
+      variables: {
+        email: this.state.account,
+        password: this.state.password,
+        nickname: this.state.nickname
+      }
+    })
+    console.log('gogo')
   }
 
   render() {
     return (
       <AdoptContainer>
         {({ signUpFn, queryFn }) => {
+          const {
+            result: { error, data, loading }
+          } = signUpFn
+          if (loading) {
+            return <Text>loading</Text>
+          }
+          if (error) {
+            return <Text>{error.message}</Text>
+          }
+          if (data) {
+            return <Text>SignUp Success</Text>
+          }
+          console.log('signUpss', signUpFn)
           return (
             <Container>
               <Content>

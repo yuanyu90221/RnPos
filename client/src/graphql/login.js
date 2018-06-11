@@ -36,18 +36,7 @@ export const loginFn = ({ render }) => (
 )
 
 export const signUpFn = ({ render }) => (
-  <Mutation mutation={signUpGql} fetchPolicy="cache-and-network">
+  <Mutation mutation={signUpGql}>
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
-
-// const loginFetch = ({ render }) => (
-//   <Mutation mutation={loginGql} fetchPolicy="cache-and-network">
-//     {(mutation, result) => render({ mutation, result })}
-//   </Mutation>
-// )
-
-// export const CrudContainer = adopt({
-//   query: <Query query={userAllQuery} fetchPolicy="network-only" />,
-//   loginFn: loginFn
-// })
