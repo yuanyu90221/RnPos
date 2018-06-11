@@ -8,7 +8,8 @@ import {
   Input,
   Icon,
   Button,
-  Text
+  Text,
+  Toast
 } from 'native-base'
 
 import { Query, Mutation } from 'react-apollo'
@@ -66,6 +67,13 @@ class SignUp extends React.PureComponent {
     })
     console.log('gogo')
   }
+  showToast = () => {
+    Toast.show({
+      text: 'Wrong password!',
+      buttonText: 'Okay',
+      position: 'bottom'
+    })
+  }
 
   render() {
     return (
@@ -77,13 +85,21 @@ class SignUp extends React.PureComponent {
           if (loading) {
             return <Text>loading</Text>
           }
+          let ShowToast: any = {}
           if (error) {
             return <Text>{error.message}</Text>
+            // ShowToast = Toast.show({
+            //   text: error.message, buttonText: "Okay", duration: 3000
+            // })
           }
           if (data) {
+            // ShowToast = Toast.show({
+            //   text: "SignUp Success", buttonText: "Okay", duration: 3000
+            // })
             return <Text>SignUp Success</Text>
           }
           console.log('signUpss', signUpFn)
+
           return (
             <Container>
               <Content>
