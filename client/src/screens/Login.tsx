@@ -1,28 +1,29 @@
 import * as React from 'react'
-import { View, SafeAreaView, ImageBackground, Dimensions, TouchableOpacity } from 'react-native'
+import {
+  View,
+  SafeAreaView,
+  ImageBackground,
+  Dimensions,
+  TouchableOpacity
+} from 'react-native'
 import { Text, Item, Input, Icon, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
+import { adopt } from 'react-adopt'
+import { Toggle, Value } from 'react-powerplug'
 import { Query, Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
-// tslint:disable-next-line:variable-name
-const userAllQuery = gql`
-  query userAllQuery {
-    userAllQuery {
-      email
-    }
-  }
-`
-const loginGql = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-    }
-  }
-`
-// tslint:disable-next-line:variable-name
 
+import { queryFn, loginFn } from '../graphql/login'
+
+//console.log('AllGraphql', AllGraphql)
+
+const AdoptContainer = adopt({
+  queryFn,
+  loginFn
+})
+
+//console.log('AdoptContainer', AdoptContainer)
 export interface LoginProps {
-  screenProps: any,
+  screenProps: any
   navigation: any
 }
 export interface LoginState {
@@ -133,6 +134,19 @@ class Login extends React.Component<LoginProps, any> {
       }
     }
   }
+  Login = loginFn => async () => {
+    const {
+      data: {
+        login: { token }
+      }
+    }: any = await loginFn.mutation({
+      variables: {
+        email: this.state.accountText,
+        password: this.state.passwordText
+      }
+    })
+    this.SignIn(token)
+  }
   passwordClean() {
     this.setState({
       passwordStatus: false,
@@ -140,17 +154,18 @@ class Login extends React.Component<LoginProps, any> {
     })
   }
   PushToSignUpPage() {
-
     this.props.navigation.push('SignUp')
   }
   render() {
+    // return <AdoptContainer>
+    //   {({ result: { container: {
+    //     loginFn: { data, loading, error }
+    //   } } }) => {
+
     return (
-      <Mutation mutation={loginGql}>
-        {(login, { data, loading, error }) => {
-          // if (loading == true) { return <Text>Loading</Text> }
-          if (error != undefined) {
-            return <Text>error</Text>
-          }
+      <AdoptContainer>
+        {({ signUpFn, queryFn }) => {
+          //   console.log('result', result)
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground
@@ -183,13 +198,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='USERNAME'
+                        placeholder="USERNAME"
                         value={this.state.accountText}
                         onChangeText={this.accountChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.accounClean}
                       />
                     </Item>
@@ -199,13 +214,13 @@ class Login extends React.Component<LoginProps, any> {
                       style={{ marginLeft: 20, marginRight: 20 }}
                     >
                       <Input
-                        placeholder='PASSWORD'
+                        placeholder="PASSWORD"
                         value={this.state.passwordText}
                         onChangeText={this.passwordChangeText}
                       />
                       <Icon
                         style={{ color: 'white' }}
-                        name='close-circle'
+                        name="close-circle"
                         onPress={this.passwordClean}
                       />
                     </Item>
@@ -213,31 +228,19 @@ class Login extends React.Component<LoginProps, any> {
                   <Button
                     full
                     style={{ marginTop: 40, backgroundColor: 'brown' }}
-                    onPress={async () => {
-                      const {
-                        data : {
-                          login: { token }
-                        }
-                      }: any = await login({
-                        variables: {
-                          email: this.state.accountText,
-                          password: this.state.passwordText
-                        }
-                      })
-                      this.SignIn(token)
-                    }}
+                    onPress={this.Login(loginFn)}
                   >
                     <Text>Sign In</Text>
                   </Button>
                   <TouchableOpacity onPress={this.PushToSignUpPage}>
                     <Text
-                    style={{
-                      textAlign: 'center',
-                      marginTop: 20,
-                      color: 'white'
-                    }}
+                      style={{
+                        textAlign: 'center',
+                        marginTop: 20,
+                        color: 'white'
+                      }}
                     >
-                    Don't have an account? Sign Up
+                      Don't have an account? Sign Up
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -245,8 +248,11 @@ class Login extends React.Component<LoginProps, any> {
             </SafeAreaView>
           )
         }}
-      </Mutation>
+      </AdoptContainer>
     )
+
+    //   }}
+    // </AdoptContainer>
   }
 }
 // tslint:disable-next-line:variable-name
