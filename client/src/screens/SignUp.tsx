@@ -25,7 +25,7 @@ const AdoptContainer = adopt({
   signUpFn
 })
 
-class SignUp extends React.PureComponent {
+class SignUp extends React.Component<any, any> {
   state = {
     account: '',
     password: '',
@@ -67,13 +67,7 @@ class SignUp extends React.PureComponent {
     })
     console.log('gogo')
   }
-  showToast = () => {
-    Toast.show({
-      text: 'Wrong password!',
-      buttonText: 'Okay',
-      position: 'bottom'
-    })
-  }
+  showToast = () => {}
 
   render() {
     return (
@@ -82,24 +76,20 @@ class SignUp extends React.PureComponent {
           const {
             result: { error, data, loading }
           } = signUpFn
-          if (loading) {
-            return <Text>loading</Text>
-          }
+
           let ShowToast: any = {}
           if (error) {
             return <Text>{error.message}</Text>
-            // ShowToast = Toast.show({
-            //   text: error.message, buttonText: "Okay", duration: 3000
-            // })
           }
           if (data) {
-            // ShowToast = Toast.show({
-            //   text: "SignUp Success", buttonText: "Okay", duration: 3000
-            // })
+            //console.log('this.props', this.props)
+            //this.props.screenProps.changeToken(data)
             return <Text>SignUp Success</Text>
           }
           console.log('signUpss', signUpFn)
-
+          // Toast.show({
+          //   text: "SignUp Success", buttonText: "Okay", duration: 3000
+          // })
           return (
             <Container>
               <Content>
@@ -133,6 +123,17 @@ class SignUp extends React.PureComponent {
                   style={{ marginTop: 40 }}
                 >
                   <Text>SignUp</Text>
+                </Button>
+                <Button
+                  onPress={() => {
+                    Toast.show({
+                      text: 'Wrong password!',
+                      buttonText: 'Okay',
+                      position: 'bottom'
+                    })
+                  }}
+                >
+                  <Text>Test</Text>
                 </Button>
               </Content>
             </Container>
