@@ -28,6 +28,7 @@
     "react-native": "0.55.4",
     "react-native-gifted-chat": "^0.4.3",
     "react-navigation": "^2.1.0",
+    "react-powerplug": "^1.0.0-alpha.7",
     "sendbird": "^3.0.63"
   },
   "devDependencies": {

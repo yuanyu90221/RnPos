@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const SendBird = require('sendbird')
 
 const User = require('../models/user')
 const config = require('../../config')
-
-// const { getUserId } = require('../utils')
+const { addUser } = require('./sendbird/')
 
 const Query = {
   Query: {
@@ -44,16 +44,23 @@ const Mutation = {
       return { token }
     },
     signup: async (_, args, ctx) => {
+      console.log('signup')
       let user = new User()
       user.email = args.email
       user.password = args.password
-      user.picture = user.gravatar()
+      //user.picture = user.gravatar()
+      user.nickname = args.nickname
 
       const existingUser = await User.findOne({ email: args.email })
 
       if (existingUser) {
         throw new Error('Account with that email is already exist')
       } else {
+        const result = addUser(user.email, user.nickname, user.email)
+        // if (error) {
+        //   throw new Error('SendBird Error')
+        // }
+        console.log('result', result)
         user.save()
 
         const token = jwt.sign(
@@ -66,14 +73,11 @@ const Mutation = {
           }
         )
 
-        // ctx.req.session.userToken = token
-
         return user
       }
     },
     logout: async (_, args, ctx) => {
       const token = ctx.req.session.userToken
-      ctx.req.session.userToken = null
 
       return {
         token

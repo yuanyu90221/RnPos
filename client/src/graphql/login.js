@@ -1,15 +1,25 @@
+import React from 'react'
 import gql from 'graphql-tag'
-import adpot from 'react-adopt'
+import { Query, Mutation } from 'react-apollo'
 
 export const loginGql = gql`
-      mutaion login($email:String,$password:String){
-          login(email:$email,password:$password){
-           token 
-          }
-      }
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
 `
+
+export const signUpGql = gql`
+  mutation signup($email: String!, $password: String!, $nickname: String!) {
+    signup(email: $email, password: $password, nickname: $nickname) {
+      token
+    }
+  }
+`
+
 // tslint:disable-next-line:variable-name
-const userAllQuery = gql`
+export const userAllQuery = gql`
   query userAllQuery {
     userAllQuery {
       email
@@ -17,13 +27,16 @@ const userAllQuery = gql`
   }
 `
 
-const loginFetch = ({ render }) => (
+export const queryFn = <Query query={userAllQuery} />
+
+export const loginFn = ({ render }) => (
   <Mutation mutation={loginGql} fetchPolicy="cache-and-network">
     {(mutation, result) => render({ mutation, result })}
   </Mutation>
 )
 
-export const AllGraphql = adpot({
-  query: <Query query={userAllQuery} />,
-  login: loginFetch
-})
+export const signUpFn = ({ render }) => (
+  <Mutation mutation={signUpGql}>
+    {(mutation, result) => render({ mutation, result })}
+  </Mutation>
+)
