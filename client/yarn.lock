@@ -465,8 +465,8 @@
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.55.16.tgz#992304c2228b276c10d2b4460d824477b25d0306"
 
 "@types/react-navigation@^2.0.2":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-2.0.4.tgz#9cbbb5baa65ff1b602c3d982c96fd20bbb0d248b"
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-navigation/-/react-navigation-2.0.5.tgz#b771d6d1e489eb86797aee780779ae4467221c82"
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
@@ -2634,6 +2634,10 @@ hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.2.2, hoist-non-react-
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
+hoist-non-react-statics@^2.2.2:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.4.tgz#fc3b1ac05d2ae3abedec84eba846511b0d4fcc4f"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -4672,9 +4676,9 @@ react-navigation-deprecated-tab-navigator@1.3.0:
   dependencies:
     react-native-tab-view "^0.0.77"
 
-react-navigation-drawer@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-0.2.1.tgz#fed9b09a41ddfdc1ff198fad04a7b6051def8adf"
+react-navigation-drawer@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-drawer/-/react-navigation-drawer-0.3.0.tgz#641007213f0f1e1b55a0a4bb64d71df07b3e7208"
   dependencies:
     react-native-drawer-layout-polyfill "^1.3.2"
 
@@ -4689,8 +4693,8 @@ react-navigation-tabs@0.5.1:
     react-native-tab-view "^1.0.0"
 
 react-navigation@^2.1.0:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-2.2.5.tgz#5c23091d2a87b63fe8d6be350d155664677b903c"
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-2.3.1.tgz#f0734ecc64a0af70395f889d9ffa8f610642eed5"
   dependencies:
     clamp "^1.0.1"
     create-react-context "^0.2.1"
@@ -4700,14 +4704,8 @@ react-navigation@^2.1.0:
     react-lifecycles-compat "^3"
     react-native-safe-area-view "^0.8.0"
     react-navigation-deprecated-tab-navigator "1.3.0"
-    react-navigation-drawer "0.2.1"
+    react-navigation-drawer "0.3.0"
     react-navigation-tabs "0.5.1"
-
-react-powerplug@^1.0.0-alpha.7:
-  version "1.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/react-powerplug/-/react-powerplug-1.0.0-alpha.7.tgz#aaba5d773fdd655e1e48cae37b9251d9d72a44a4"
-  dependencies:
-    "@babel/runtime" "7.0.0-beta.49"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -5070,8 +5068,8 @@ send@0.16.2:
     statuses "~1.4.0"
 
 sendbird@^3.0.63:
-  version "3.0.64"
-  resolved "https://registry.yarnpkg.com/sendbird/-/sendbird-3.0.64.tgz#780968691fb16ee23054168dfc75dae93750e49c"
+  version "3.0.65"
+  resolved "https://registry.yarnpkg.com/sendbird/-/sendbird-3.0.65.tgz#3ed8ba1a433c703f9ddbb5f7fe23fbea057f4f1f"
   dependencies:
     agentkeepalive "2.2.0"
     form-data "2.1.2"

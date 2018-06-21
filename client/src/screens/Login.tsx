@@ -170,7 +170,7 @@ class Login extends React.Component<LoginProps, any> {
             <SafeAreaView style={{ flex: 1 }}>
               <ImageBackground
                 opacity={0.5}
-                source={require('../../../Images/LoginBackground.jpg')}
+                source={{uri: 'https://images.unsplash.com/photo-1495965478447-052a41235743?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ca957400c4e58a60e146eaaf0da399a8&auto=format&fit=crop&w=1322&q=80'}}
                 style={{
                   flex: 1,
                   width: this.getDimensions('width'),

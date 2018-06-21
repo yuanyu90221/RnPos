@@ -10,10 +10,10 @@
     "lint": "tslint src/**/*.ts",
     "build": "npm run clean && npm run tsc --",
     "watch": "npm run build -- -w",
-    "start:ios":
-      "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
-    "start:android":
-      "npm run build && concurrently -r 'npm run watch' 'react-native run-android'"
+    "start:ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
+    "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
+    "release": "npm run build && react-native bundle --entry-file='dist/index.ios.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
+    "fastlane": "npm run release && cd ios && fastlane beta"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.1",
