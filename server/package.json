@@ -6,7 +6,12 @@
   "scripts": {
     "server": "node server"
   },
-  "keywords": ["reactNative", "pos", "apollographql", "expresss"],
+  "keywords": [
+    "reactNative",
+    "pos",
+    "apollographql",
+    "expresss"
+  ],
   "author": "polo <polo13999@gmail.com>",
   "license": "MIT",
   "dependencies": {
