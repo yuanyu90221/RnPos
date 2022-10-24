@@ -27,7 +27,7 @@
     "graphql-tools": "^3.0.2",
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.7.5",
-    "request": "^2.87.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.2"
   }
 }
