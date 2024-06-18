@@ -1747,8 +1747,8 @@ which-boxed-primitive@^1.0.2:
     is-symbol "^1.0.3"
 
 "ws@^5.2.0 || ^6.0.0 || ^7.0.0":
-  version "7.5.3"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.3.tgz#160835b63c7d97bfab418fc1b8a9fced2ac01a74"
+  version "7.5.10"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.10.tgz#58b5c20dc281633f6c19113f39b349bd8bd558d9"
 
 xss@^1.0.8:
   version "1.0.9"
