@@ -543,9 +543,9 @@ bluebird@^3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
-body-parser@^1.18.3, body-parser@^1.20.6, body-parser@~1.20.3:
-  version "1.20.6"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.6.tgz#60c789c78e0992d906da0a29d71ae01d15c1ed76"
+body-parser@^1.18.3, body-parser@^1.20.9, body-parser@~1.20.3:
+  version "1.20.9"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.9.tgz#b64358a113b4d200d7484752cd154b66933e2009"
   dependencies:
     bytes "~3.1.2"
     content-type "~1.0.5"
@@ -555,7 +555,7 @@ body-parser@^1.18.3, body-parser@^1.20.6, body-parser@~1.20.3:
     http-errors "~2.0.1"
     iconv-lite "~0.4.24"
     on-finished "~2.4.1"
-    qs "~6.15.1"
+    qs "~6.16.0"
     raw-body "~2.5.3"
     type-is "~1.6.18"
     unpipe "~1.0.0"
@@ -1470,9 +1470,9 @@ qs@~6.14.0:
   dependencies:
     side-channel "^1.1.0"
 
-qs@~6.15.1:
-  version "6.15.3"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.15.3.tgz#76852132a58ed5c7c0ef67e4441b9bb5d6061b3b"
+qs@~6.16.0:
+  version "6.16.2"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.16.2.tgz#f7f5a606730f013f4f4ea62a8025f37be0f8c09c"
   dependencies:
     es-define-property "^1.0.1"
     side-channel "^1.1.1"
