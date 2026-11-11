@@ -277,8 +277,8 @@ find-up@^5.0.0:
     path-exists "^4.0.0"
 
 follow-redirects@^1.14.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.16.1.tgz#6e0efa40a727fb369b98dab15883ec34787d675e"
+  version "1.16.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.16.3.tgz#62b60932427f616327014a5e401e8fc5e9027e9b"
 
 form-data@^3.0.0:
   version "3.0.5"
